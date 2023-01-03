@@ -1,6 +1,6 @@
-import { StyleSheet, View, Text } from 'react-native';
-import { Button, DefaultTheme, Form, useForm } from 'dailyfriend-ui';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Button, DefaultTheme, Form, useForm } from 'dailyfriend-ui';
+import { StyleSheet, View } from 'react-native';
 import { z } from 'zod';
 
 export default function Forms() {
@@ -19,10 +19,13 @@ export default function Forms() {
       ),
   });
 
+  type SchemaType = z.infer<typeof schema>;
+
   const {
     control,
     handleSubmit,
     formState: { errors },
+    setError,
   } = useForm({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -31,13 +34,17 @@ export default function Forms() {
     },
     mode: 'onChange',
   });
-  const onSubmit = (data: any) => {
+
+  const onSubmit = (data: SchemaType) => {
     console.log(data);
+    setError('firstName', {
+      type: 'custom',
+      message: 'Esse é um erro customizado!',
+    });
   };
 
   return (
     <View style={styles.container}>
-      <Text>Hello World</Text>
       <Form.TextInput
         inputName="firstName"
         control={control}
@@ -57,11 +64,7 @@ export default function Forms() {
         error={errors.lastName?.message}
       />
 
-      <Button
-        mode="contained"
-        style={{ marginTop: 20 }}
-        onPress={handleSubmit(onSubmit)}
-      >
+      <Button mode="contained" onPress={handleSubmit(onSubmit)}>
         Enviar
       </Button>
     </View>
@@ -71,12 +74,6 @@ export default function Forms() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 60,
     margin: 20,
-  },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
   },
 });
