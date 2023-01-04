@@ -5,6 +5,7 @@ export { default as AnimatedImage } from 'react-native-ui-lib/animatedImage';
 export { default as ColorPalette } from 'react-native-ui-lib/colorPalette';
 export { default as ColorPicker } from 'react-native-ui-lib/colorPicker';
 export { default as SectionsWheelPicker } from 'react-native-ui-lib/sectionsWheelPicker';
+export { default as Hint } from 'react-native-ui-lib/hint';
 
 export { Form } from './Form';
 

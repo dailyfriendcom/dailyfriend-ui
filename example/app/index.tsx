@@ -18,6 +18,9 @@ export default function Home() {
       <Link href="/sections-wheel-picker" style={styles.linkButton}>
         Sections Wheel Picker
       </Link>
+      <Link href="/hint" style={styles.linkButton}>
+        Hint
+      </Link>
     </View>
   );
 }
