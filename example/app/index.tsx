@@ -21,6 +21,9 @@ export default function Home() {
       <Link href="/hint" style={styles.linkButton}>
         Hint
       </Link>
+      <Link href="/expandable-section" style={styles.linkButton}>
+        Expandable Section
+      </Link>
     </View>
   );
 }
