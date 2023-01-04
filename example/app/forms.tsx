@@ -32,6 +32,7 @@ export default function Forms() {
     terms: z.boolean(),
     gender: z.enum(['male', 'female']),
     preference: z.enum(['walk', 'train', 'drive']),
+    switchOn: z.boolean(),
   });
 
   type SchemaType = z.infer<typeof schema>;
@@ -124,6 +125,12 @@ export default function Forms() {
           },
           { value: 'drive', label: 'Driving' },
         ]}
+      />
+
+      <Form.Switch
+        inputName="switchOn"
+        control={control}
+        error={errors.switchOn?.message}
       />
 
       <Button mode="contained" onPress={handleSubmit(onSubmit)}>
