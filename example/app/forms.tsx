@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button, DefaultTheme, Form, useForm } from 'dailyfriend-ui';
+import { Button, DefaultTheme, Form, Picker, useForm } from 'dailyfriend-ui';
 import { StyleSheet, View } from 'react-native';
 import { z } from 'zod';
 
@@ -63,6 +63,8 @@ export default function Forms() {
         secureTextEntry={true}
         error={errors.lastName?.message}
       />
+
+      <Picker placeholder="Selecione uma opção" />
 
       <Button mode="contained" onPress={handleSubmit(onSubmit)}>
         Enviar
