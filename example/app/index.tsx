@@ -15,6 +15,9 @@ export default function Home() {
       <Link href="/color-palette" style={styles.linkButton}>
         Paleta de cores
       </Link>
+      <Link href="/sections-wheel-picker" style={styles.linkButton}>
+        Sections Wheel Picker
+      </Link>
     </View>
   );
 }

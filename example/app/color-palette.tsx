@@ -1,4 +1,4 @@
-import { ColorPalette } from 'dailyfriend-ui';
+import { ColorPalette, ColorPicker } from 'dailyfriend-ui';
 import { useState } from 'react';
 import { View } from 'react-native';
 
@@ -78,6 +78,8 @@ const ColorPalettePage: React.FC = () => {
         value={selectedColor}
         onValueChange={setSelectedColor}
       />
+
+      <ColorPicker initialColor="#00AAAF" colors={['#eee', '#0f0f0f']} />
     </View>
   );
 };
