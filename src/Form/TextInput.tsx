@@ -10,8 +10,13 @@ import {
   HelperText,
 } from 'react-native-paper';
 
+type TextInputPropsWithoutUnusedProps = Omit<
+  TextInputProps,
+  'error' | 'value' | 'onChangeText' | 'onBlur'
+>;
+
 type TextInputType = Partial<
-  Omit<TextInputProps, 'error'> & TextInputAffixProps & TextInputIconProps
+  TextInputPropsWithoutUnusedProps & TextInputAffixProps & TextInputIconProps
 >;
 
 export interface FormTextInput extends TextInputType {

@@ -8,7 +8,9 @@ import {
   HelperText,
 } from 'react-native-paper';
 
-export type FormRadioButtonGroupProps = Partial<RadioButtonGroupProps> & {
+export type FormRadioButtonGroupProps = Partial<
+  Omit<RadioButtonGroupProps, 'value' | 'onValueChange'>
+> & {
   inputName: string;
   control: Control<any, any> | undefined;
   controllerOptions?: Partial<ControllerProps>;

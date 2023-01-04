@@ -7,7 +7,7 @@ import Picker, { PickerProps } from '../Picker';
 
 export type FormPicker = Omit<
   PickerProps,
-  'value' | 'onChange' | 'onChangeText'
+  'value' | 'onChange' | 'onChangeText' | 'onBlur' | 'error' | 'errorMessage'
 > & {
   inputName: string;
   control: Control<any, any> | undefined;
