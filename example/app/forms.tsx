@@ -1,5 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, DefaultTheme, Form, Picker, useForm } from 'dailyfriend-ui';
+import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { z } from 'zod';
 
@@ -43,6 +44,8 @@ export default function Forms() {
     });
   };
 
+  const [selected, setSelected] = useState();
+
   return (
     <View style={styles.container}>
       <Form.TextInput
@@ -64,7 +67,17 @@ export default function Forms() {
         error={errors.lastName?.message}
       />
 
-      <Picker placeholder="Selecione uma opção" />
+      <Picker
+        placeholder="Selecione uma opção"
+        value={selected}
+        onChange={(used: any) => setSelected(used)}
+      >
+        <Picker.Item label="JavaScript" value="js" />
+        <Picker.Item label="Java" value="java" />
+        <Picker.Item label="Python" value="python" />
+        <Picker.Item label="C++" value="c++" disabled />
+        <Picker.Item label="Perl" value="perl" />
+      </Picker>
 
       <Button mode="contained" onPress={handleSubmit(onSubmit)}>
         Enviar
