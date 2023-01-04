@@ -9,6 +9,9 @@ export default function Home() {
       <Link href="/forms" style={styles.linkButton}>
         Formulários
       </Link>
+      <Link href="/animated-image" style={styles.linkButton}>
+        Imagens animadas
+      </Link>
     </View>
   );
 }
