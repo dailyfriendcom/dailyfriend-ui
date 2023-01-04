@@ -1,6 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, DefaultTheme, Form, Picker, useForm } from 'dailyfriend-ui';
-import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { z } from 'zod';
 
@@ -18,6 +17,10 @@ export default function Forms() {
         /^[a-zA-Z]+$/,
         'Por favor prencha somente com letras números nada além disso!'
       ),
+    language: z.object({
+      label: z.string(),
+      value: z.string(),
+    }),
   });
 
   type SchemaType = z.infer<typeof schema>;
@@ -27,7 +30,7 @@ export default function Forms() {
     handleSubmit,
     formState: { errors },
     setError,
-  } = useForm({
+  } = useForm<SchemaType>({
     resolver: zodResolver(schema),
     defaultValues: {
       firstName: '',
@@ -37,14 +40,12 @@ export default function Forms() {
   });
 
   const onSubmit = (data: SchemaType) => {
-    console.log(data);
-    setError('firstName', {
+    console.log('dados:', data);
+    setError('language', {
       type: 'custom',
       message: 'Esse é um erro customizado!',
     });
   };
-
-  const [selected, setSelected] = useState();
 
   return (
     <View style={styles.container}>
@@ -67,17 +68,18 @@ export default function Forms() {
         error={errors.lastName?.message}
       />
 
-      <Picker
+      <Form.Picker
         placeholder="Selecione uma opção"
-        value={selected}
-        onChange={(used: any) => setSelected(used)}
+        inputName="language"
+        control={control}
+        error={errors.language?.message}
       >
         <Picker.Item label="JavaScript" value="js" />
         <Picker.Item label="Java" value="java" />
         <Picker.Item label="Python" value="python" />
         <Picker.Item label="C++" value="c++" disabled />
         <Picker.Item label="Perl" value="perl" />
-      </Picker>
+      </Form.Picker>
 
       <Button mode="contained" onPress={handleSubmit(onSubmit)}>
         Enviar

@@ -4,7 +4,7 @@ import PickerUI from 'react-native-ui-lib/picker';
 
 type PickerBaseProps = typeof PickerUI.defaultProps;
 
-type PickerProps = PickerBaseProps & {
+export type PickerProps = PickerBaseProps & {
   textInputStyleMode?: TextInputProps['mode'];
 };
 
@@ -23,6 +23,7 @@ class Picker extends React.Component<PickerProps, any, any> {
             value={itemLabel}
             mode={textInputStyleMode}
             right={<TextInput.Icon icon="chevron-down" />}
+            error={props.error}
           />
         )}
         {...props}
