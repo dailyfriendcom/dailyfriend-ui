@@ -6,6 +6,7 @@ type PickerBaseProps = typeof PickerUI.defaultProps;
 
 export type PickerProps = PickerBaseProps & {
   textInputStyleMode?: TextInputProps['mode'];
+  error?: string;
 };
 
 class Picker extends React.Component<PickerProps, any, any> {
@@ -15,15 +16,14 @@ class Picker extends React.Component<PickerProps, any, any> {
     const { textInputStyleMode, ...props } = this.props;
 
     return (
-      // @ts-ignore
       <PickerUI
-        renderPicker={(_: any, itemLabel: string) => (
+        renderPicker={(_: any, itemLabel: any) => (
           <TextInput
             label={props.placeholder}
             value={itemLabel}
             mode={textInputStyleMode}
             right={<TextInput.Icon icon="chevron-down" />}
-            error={props.error}
+            error={props.error !== undefined}
           />
         )}
         {...props}
