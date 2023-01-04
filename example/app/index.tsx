@@ -12,6 +12,9 @@ export default function Home() {
       <Link href="/animated-image" style={styles.linkButton}>
         Imagens animadas
       </Link>
+      <Link href="/color-palette" style={styles.linkButton}>
+        Paleta de cores
+      </Link>
     </View>
   );
 }
