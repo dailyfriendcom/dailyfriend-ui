@@ -5,6 +5,7 @@ import {
   DefaultTheme,
   Form,
   Picker,
+  RadioButton,
   useForm,
 } from 'dailyfriend-ui';
 import { StyleSheet, View } from 'react-native';
@@ -29,6 +30,7 @@ export default function Forms() {
       value: z.string(),
     }),
     terms: z.boolean(),
+    gender: z.enum(['male', 'female']),
   });
 
   type SchemaType = z.infer<typeof schema>;
@@ -96,6 +98,15 @@ export default function Forms() {
         label="Aceito os termos de uso"
         checkboxComponent="item"
       />
+
+      <Form.RadioButton.Group
+        inputName="gender"
+        control={control}
+        error={errors.gender?.message}
+      >
+        <RadioButton.Item label="Male" value="male" />
+        <RadioButton.Item label="Female" value="female" />
+      </Form.RadioButton.Group>
 
       <Button mode="contained" onPress={handleSubmit(onSubmit)}>
         Enviar
