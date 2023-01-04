@@ -1,5 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button, DefaultTheme, Form, Picker, useForm } from 'dailyfriend-ui';
+import {
+  Button,
+  CheckboxItemProps,
+  DefaultTheme,
+  Form,
+  Picker,
+  useForm,
+} from 'dailyfriend-ui';
 import { StyleSheet, View } from 'react-native';
 import { z } from 'zod';
 
@@ -21,6 +28,7 @@ export default function Forms() {
       label: z.string(),
       value: z.string(),
     }),
+    terms: z.boolean(),
   });
 
   type SchemaType = z.infer<typeof schema>;
@@ -80,6 +88,14 @@ export default function Forms() {
         <Picker.Item label="C++" value="c++" disabled />
         <Picker.Item label="Perl" value="perl" />
       </Form.Picker>
+
+      <Form.Checkbox<CheckboxItemProps>
+        inputName="terms"
+        control={control}
+        error={errors.terms?.message}
+        label="Aceito os termos de uso"
+        checkboxComponent="item"
+      />
 
       <Button mode="contained" onPress={handleSubmit(onSubmit)}>
         Enviar
