@@ -8,7 +8,7 @@ import {
   RadioButton,
   useForm,
 } from 'dailyfriend-ui';
-import { StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 import { z } from 'zod';
 
 export default function Forms() {
@@ -31,6 +31,7 @@ export default function Forms() {
     }),
     terms: z.boolean(),
     gender: z.enum(['male', 'female']),
+    preference: z.enum(['walk', 'train', 'drive']),
   });
 
   type SchemaType = z.infer<typeof schema>;
@@ -51,14 +52,14 @@ export default function Forms() {
 
   const onSubmit = (data: SchemaType) => {
     console.log('dados:', data);
-    setError('language', {
+    setError('preference', {
       type: 'custom',
       message: 'Esse é um erro customizado!',
     });
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Form.TextInput
         inputName="firstName"
         control={control}
@@ -108,10 +109,27 @@ export default function Forms() {
         <RadioButton.Item label="Female" value="female" />
       </Form.RadioButton.Group>
 
+      <Form.SegmentedButtons
+        inputName="preference"
+        control={control}
+        error={errors.preference?.message}
+        buttons={[
+          {
+            value: 'walk',
+            label: 'Walking',
+          },
+          {
+            value: 'train',
+            label: 'Train',
+          },
+          { value: 'drive', label: 'Driving' },
+        ]}
+      />
+
       <Button mode="contained" onPress={handleSubmit(onSubmit)}>
         Enviar
       </Button>
-    </View>
+    </ScrollView>
   );
 }
 
