@@ -3,7 +3,7 @@ import React from 'react';
 import { Control, Controller, ControllerProps } from 'react-hook-form';
 
 import { HelperText } from 'react-native-paper';
-import Picker, { PickerProps } from '../Picker';
+import Picker, { PickerProps } from '../Picker/Picker';
 
 export type FormPicker = Omit<
   PickerProps,
@@ -29,7 +29,6 @@ const FormPicker: React.FC<FormPicker> = ({
         name={inputName}
         control={control}
         render={({ field: { onChange, value } }) => (
-          // @ts-ignore
           <Picker {...props} onChange={onChange} value={value} error={error} />
         )}
       />

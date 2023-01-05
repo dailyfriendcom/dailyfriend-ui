@@ -10,4 +10,4 @@ export { default as ExpandableSection } from 'react-native-ui-lib/expandableSect
 
 export { Form } from './components/Form';
 
-export { default as Picker } from './components/Picker';
+export { default as Picker } from './components/Picker/Picker';

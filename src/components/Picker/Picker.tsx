@@ -1,37 +1,29 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import {
   Appbar,
   Button,
-  Checkbox,
-  RadioButton,
   TextInput,
   TextInputProps,
   useTheme,
 } from 'react-native-paper';
 import DialogUI from 'react-native-ui-lib/dialog';
+import { PickerContext } from './PickerContext';
+import PickerItem from './PickerItem';
+import type { PickerItemProps } from './PickerItem';
 
 export type PickerProps = {
-  mode?: TextInputProps['mode'];
+  value?: string | string[];
+  onChange?: (value: PickerItemProps | PickerItemProps[]) => void;
   label?: string;
+  mode?: TextInputProps['mode'];
   multiSelect?: boolean;
   selectionLimit?: number;
   error?: string;
   headerOptions?: {
     title?: string;
   };
-  onChange?: (value: PickerItemProps | PickerItemProps[]) => void;
-  value?: string | string[];
 };
-
-interface PickerContext {
-  multiSelect: PickerProps['multiSelect'];
-  selectionLimit: PickerProps['selectionLimit'];
-  selectedItems: PickerItemProps | PickerItemProps[] | null;
-  onSelected: (item: PickerItemProps) => void;
-}
-
-const PickerContext = React.createContext<PickerContext | null>(null);
 
 const Picker: React.FC<PickerProps> = ({
   mode = 'flat',
@@ -145,49 +137,6 @@ const Picker: React.FC<PickerProps> = ({
       </DialogUI>
     </View>
   );
-};
-
-interface PickerItemProps {
-  label: string;
-  value: string;
-  disabled?: boolean;
-}
-
-const PickerItem: React.FC<PickerItemProps> = ({ label, value, disabled }) => {
-  const context = useContext(PickerContext);
-
-  if (!context) return <View />;
-
-  if (context?.multiSelect) {
-    const selectedItems = context.selectedItems as PickerItemProps[];
-
-    const isSelected = selectedItems?.map((e) => e.value).includes(value);
-
-    const isDisabled = context.selectedItems
-      ? selectedItems.length >= context.selectionLimit! && !isSelected
-      : false;
-
-    return (
-      <Checkbox.Item
-        label={label}
-        status={isSelected ? 'checked' : 'unchecked'}
-        disabled={disabled || isDisabled}
-        onPress={() => context.onSelected({ label, value, disabled })}
-      />
-    );
-  } else {
-    const selectedItem = context?.selectedItems as PickerItemProps | null;
-
-    return (
-      <RadioButton.Item
-        label={label}
-        value={value}
-        status={selectedItem?.value === value ? 'checked' : 'unchecked'}
-        disabled={disabled}
-        onPress={() => context.onSelected({ label, value, disabled })}
-      />
-    );
-  }
 };
 
 // @ts-expect-error
