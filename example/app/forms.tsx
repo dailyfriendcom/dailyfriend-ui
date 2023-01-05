@@ -2,7 +2,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import {
   Button,
   CheckboxItemProps,
-  DefaultTheme,
   Form,
   Picker,
   RadioButton,
@@ -64,7 +63,6 @@ export default function Forms() {
       <Form.TextInput
         inputName="firstName"
         control={control}
-        theme={DefaultTheme}
         text="First Name"
         label="First Name"
         error={errors.firstName?.message}
@@ -73,7 +71,6 @@ export default function Forms() {
       <Form.TextInput
         inputName="lastName"
         control={control}
-        theme={DefaultTheme}
         text="Last Name"
         label="Last Name"
         secureTextEntry={true}
@@ -81,10 +78,12 @@ export default function Forms() {
       />
 
       <Form.Picker
-        placeholder="Selecione uma opção"
+        label="Selecione uma opção"
         inputName="language"
         control={control}
         error={errors.language?.message}
+        multiSelect
+        selectionLimit={2}
       >
         <Picker.Item label="JavaScript" value="js" />
         <Picker.Item label="Java" value="java" />

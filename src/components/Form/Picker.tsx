@@ -28,16 +28,9 @@ const FormPicker: React.FC<FormPicker> = ({
         {...controllerOptions}
         name={inputName}
         control={control}
-        render={({ field: { onChange, onBlur, value } }) => (
+        render={({ field: { onChange, value } }) => (
           // @ts-ignore
-          <Picker
-            {...props}
-            onBlur={onBlur}
-            onChange={onChange}
-            value={value}
-            error={error}
-            errorMessage={error}
-          />
+          <Picker {...props} onChange={onChange} value={value} error={error} />
         )}
       />
       <HelperText type="error" visible={!!error}>
