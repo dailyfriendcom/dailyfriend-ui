@@ -41,30 +41,42 @@ export type PickerProps = {
 };
 
 const Picker: React.FC<PickerProps> = ({
-  mode = 'flat',
+  value,
+  onChange,
+
   label,
+  mode = 'flat',
+
   multiSelect = false,
   selectionLimit = 2,
+
   error,
+
   headerOptions = {
     title: 'Selecione...',
   },
-  onChange,
-  value,
+
   modalMaxHeight: _modalMaxHeight = 100,
   showSearch = false,
   searchPlaceholder = 'Pesquisar...',
+
   renderPicker,
   children,
 }) => {
   const theme = useTheme();
 
+  /**
+   * States
+   */
   const [isModalOpened, setIsModalOpened] = useState<boolean>(false);
   const [selectedItems, setSelectedItems] = useState<
     PickerItemProps | PickerItemProps[] | null
   >(value as any);
   const [searchTerm, setSearchTerm] = useState<string>('');
 
+  /**
+   * Handles
+   */
   function handleOpenModal() {
     setIsModalOpened(true);
   }
@@ -79,7 +91,17 @@ const Picker: React.FC<PickerProps> = ({
     handleCloseModal();
   }
 
-  function onSelectedItem(item: PickerItemProps) {
+  function handleOnChange(items: PickerItemProps | PickerItemProps[]) {
+    if (onChange) {
+      onChange(items);
+    }
+  }
+
+  function handleOnChangeSearchText(text: string) {
+    setSearchTerm(text);
+  }
+
+  function handleOnSelectedItem(item: PickerItemProps) {
     if (!multiSelect) {
       setSelectedItems(item);
       handleOnChange(item);
@@ -101,16 +123,9 @@ const Picker: React.FC<PickerProps> = ({
     }
   }
 
-  function handleOnChange(items: PickerItemProps | PickerItemProps[]) {
-    if (onChange) {
-      onChange(items);
-    }
-  }
-
-  function onChangeSearchText(text: string) {
-    setSearchTerm(text);
-  }
-
+  /**
+   * Renders
+   */
   const _renderPicker = useCallback(() => {
     const textLabel = Array.isArray(selectedItems)
       ? selectedItems.map((e) => e.label).join(', ')
@@ -135,6 +150,9 @@ const Picker: React.FC<PickerProps> = ({
     );
   }, [label, selectedItems, mode, error, renderPicker]);
 
+  /**
+   * Const vars
+   */
   const roundedTopRadius = {
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
@@ -174,7 +192,7 @@ const Picker: React.FC<PickerProps> = ({
               selectionLimit,
               selectedItems,
               searchTerm,
-              onSelected: onSelectedItem,
+              onSelected: handleOnSelectedItem,
             }}
           >
             {showSearch && (
@@ -182,7 +200,7 @@ const Picker: React.FC<PickerProps> = ({
                 <Searchbar
                   placeholder={searchPlaceholder}
                   value={searchTerm}
-                  onChangeText={onChangeSearchText}
+                  onChangeText={handleOnChangeSearchText}
                 />
               </View>
             )}
