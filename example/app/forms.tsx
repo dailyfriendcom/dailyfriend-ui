@@ -82,8 +82,8 @@ export default function Forms() {
         inputName="language"
         control={control}
         error={errors.language?.message}
-        multiSelect
         selectionLimit={2}
+        modalMaxHeight={45}
       >
         <Picker.Item label="JavaScript" value="js" />
         <Picker.Item label="Java" value="java" />

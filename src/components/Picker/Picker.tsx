@@ -23,6 +23,7 @@ export type PickerProps = {
   headerOptions?: {
     title?: string;
   };
+  modalMaxHeight?: number;
 };
 
 const Picker: React.FC<PickerProps> = ({
@@ -36,6 +37,7 @@ const Picker: React.FC<PickerProps> = ({
   },
   onChange,
   value,
+  modalMaxHeight,
   children,
 }) => {
   const theme = useTheme();
@@ -86,9 +88,14 @@ const Picker: React.FC<PickerProps> = ({
     }
   }
 
+  const roundedTopRadius = {
+    borderTopLeftRadius: 16,
+    borderTopRightRadius: 16,
+  };
+
   return (
     <View>
-      <TouchableOpacity onPress={handleOpenModal}>
+      <TouchableOpacity activeOpacity={0.8} onPress={handleOpenModal}>
         <View pointerEvents="none">
           <TextInput
             label={label}
@@ -108,7 +115,9 @@ const Picker: React.FC<PickerProps> = ({
         visible={isModalOpened}
         onDismiss={handleCloseModal}
         width="100%"
-        height="100%"
+        height={modalMaxHeight ? `${modalMaxHeight}%` : '100%'}
+        containerStyle={modalMaxHeight ? roundedTopRadius : null}
+        bottom
       >
         <View
           style={{
