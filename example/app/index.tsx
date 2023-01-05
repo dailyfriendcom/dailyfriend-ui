@@ -30,7 +30,7 @@ export default function Home() {
         Expandable Section
       </Link>
       <Link href="/alerts" style={[styles.linkButton, color]}>
-        Alerts
+        Alerts & Snackbars
       </Link>
     </View>
   );

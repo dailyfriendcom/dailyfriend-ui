@@ -14,3 +14,4 @@ export { Form } from './components/Form';
 export { default as Picker } from './components/Picker/Picker';
 
 export { default as Alert } from './utils/Alert';
+export { default as Snackbar } from './utils/Snackbar';
