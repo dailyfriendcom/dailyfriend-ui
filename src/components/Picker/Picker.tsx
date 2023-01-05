@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { ScrollView, TouchableOpacity, View } from 'react-native';
 import {
   Appbar,
@@ -16,17 +16,28 @@ import type { PickerItemProps } from './PickerItem';
 export type PickerProps = {
   value?: string | string[];
   onChange?: (value: PickerItemProps | PickerItemProps[]) => void;
+
   label?: string;
   mode?: TextInputProps['mode'];
+
   multiSelect?: boolean;
   selectionLimit?: number;
+
   error?: string;
+
   headerOptions?: {
     title?: string;
   };
+
   modalMaxHeight?: number;
   showSearch?: boolean;
   searchPlaceholder?: string;
+
+  renderPicker?: (
+    label: string | undefined,
+    onPress: () => void,
+    error: string | undefined
+  ) => React.ReactNode;
 };
 
 const Picker: React.FC<PickerProps> = ({
@@ -43,6 +54,7 @@ const Picker: React.FC<PickerProps> = ({
   modalMaxHeight: _modalMaxHeight = 100,
   showSearch = false,
   searchPlaceholder = 'Pesquisar...',
+  renderPicker,
   children,
 }) => {
   const theme = useTheme();
@@ -99,6 +111,30 @@ const Picker: React.FC<PickerProps> = ({
     setSearchTerm(text);
   }
 
+  const _renderPicker = useCallback(() => {
+    const textLabel = Array.isArray(selectedItems)
+      ? selectedItems.map((e) => e.label).join(', ')
+      : selectedItems?.label;
+
+    if (renderPicker) {
+      return renderPicker(textLabel, handleOpenModal, error);
+    }
+
+    return (
+      <TouchableOpacity activeOpacity={0.8} onPress={handleOpenModal}>
+        <View pointerEvents="none">
+          <TextInput
+            label={label}
+            value={textLabel}
+            mode={mode}
+            right={<TextInput.Icon icon="chevron-down" />}
+            error={error !== undefined}
+          />
+        </View>
+      </TouchableOpacity>
+    );
+  }, [label, selectedItems, mode, error, renderPicker]);
+
   const roundedTopRadius = {
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
@@ -108,21 +144,7 @@ const Picker: React.FC<PickerProps> = ({
 
   return (
     <View>
-      <TouchableOpacity activeOpacity={0.8} onPress={handleOpenModal}>
-        <View pointerEvents="none">
-          <TextInput
-            label={label}
-            value={
-              Array.isArray(selectedItems)
-                ? selectedItems.map((e) => e.label).join(', ')
-                : selectedItems?.label
-            }
-            mode={mode}
-            right={<TextInput.Icon icon="chevron-down" />}
-            error={error !== undefined}
-          />
-        </View>
-      </TouchableOpacity>
+      {_renderPicker()}
 
       <DialogUI
         visible={isModalOpened}

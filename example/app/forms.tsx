@@ -6,8 +6,10 @@ import {
   Picker,
   RadioButton,
   useForm,
+  Text,
+  TouchableRipple,
 } from 'dailyfriend-ui';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import { z } from 'zod';
 
 export default function Forms() {
@@ -24,7 +26,13 @@ export default function Forms() {
         /^[a-zA-Z]+$/,
         'Por favor prencha somente com letras números nada além disso!'
       ),
-    language: z.object({
+    language: z.array(
+      z.object({
+        label: z.string(),
+        value: z.string(),
+      })
+    ),
+    privacy: z.object({
       label: z.string(),
       value: z.string(),
     }),
@@ -46,6 +54,20 @@ export default function Forms() {
     defaultValues: {
       firstName: '',
       lastName: '',
+      language: [
+        {
+          label: 'JavaScript',
+          value: 'js',
+        },
+        {
+          label: 'Java',
+          value: 'java',
+        },
+      ],
+      privacy: {
+        label: 'Todos',
+        value: 'all',
+      },
     },
     mode: 'onChange',
   });
@@ -85,12 +107,33 @@ export default function Forms() {
         selectionLimit={2}
         modalMaxHeight={45}
         showSearch
+        multiSelect
       >
         <Picker.Item label="JavaScript" value="js" />
         <Picker.Item label="Java" value="java" />
         <Picker.Item label="Python" value="python" />
         <Picker.Item label="C++" value="c++" disabled />
         <Picker.Item label="Perl" value="perl" />
+      </Form.Picker>
+
+      <Form.Picker
+        label="Selecione uma opção de privacidade"
+        inputName="privacy"
+        control={control}
+        error={errors.privacy?.message}
+        modalMaxHeight={45}
+        renderPicker={(label, onPress) => (
+          <TouchableRipple onPress={onPress}>
+            <View>
+              <Text>Selecione um valor</Text>
+              <Text>{label ?? 'Selecione um valor'}</Text>
+            </View>
+          </TouchableRipple>
+        )}
+      >
+        <Picker.Item label="Todos" value="all" />
+        <Picker.Item label="Amigos" value="friends" />
+        <Picker.Item label="Família" value="family" />
       </Form.Picker>
 
       <Form.Checkbox<CheckboxItemProps>
