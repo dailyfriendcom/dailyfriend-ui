@@ -1,27 +1,32 @@
 import { StyleSheet, View } from 'react-native';
 import { Link, Stack } from 'expo-router';
+import { useTheme } from 'dailyfriend-ui';
 
 export default function Home() {
+  const theme = useTheme();
+
+  const color = { color: theme.colors.onSurface };
+
   return (
     <View>
       <Stack.Screen options={{ title: 'Início' }} />
 
-      <Link href="/forms" style={styles.linkButton}>
+      <Link href="/forms" style={[styles.linkButton, color]}>
         Formulários
       </Link>
-      <Link href="/animated-image" style={styles.linkButton}>
+      <Link href="/animated-image" style={[styles.linkButton, color]}>
         Imagens animadas
       </Link>
-      <Link href="/color-palette" style={styles.linkButton}>
+      <Link href="/color-palette" style={[styles.linkButton, color]}>
         Paleta de cores
       </Link>
-      <Link href="/sections-wheel-picker" style={styles.linkButton}>
+      <Link href="/sections-wheel-picker" style={[styles.linkButton, color]}>
         Sections Wheel Picker
       </Link>
-      <Link href="/hint" style={styles.linkButton}>
+      <Link href="/hint" style={[styles.linkButton, color]}>
         Hint
       </Link>
-      <Link href="/expandable-section" style={styles.linkButton}>
+      <Link href="/expandable-section" style={[styles.linkButton, color]}>
         Expandable Section
       </Link>
     </View>
