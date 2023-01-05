@@ -14,6 +14,12 @@ const PickerItem: React.FC<PickerItemProps> = ({ label, value, disabled }) => {
 
   if (!context) return <View />;
 
+  if (
+    context.searchTerm.length > 0 &&
+    !label.toLowerCase().includes(context.searchTerm.toLowerCase())
+  )
+    return <View />;
+
   if (context?.multiSelect) {
     const selectedItems = context.selectedItems as PickerItemProps[];
 

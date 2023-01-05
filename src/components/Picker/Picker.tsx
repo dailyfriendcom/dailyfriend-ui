@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { TouchableOpacity, View } from 'react-native';
+import { ScrollView, TouchableOpacity, View } from 'react-native';
 import {
   Appbar,
   Button,
+  Searchbar,
   TextInput,
   TextInputProps,
   useTheme,
@@ -24,6 +25,8 @@ export type PickerProps = {
     title?: string;
   };
   modalMaxHeight?: number;
+  showSearch?: boolean;
+  searchPlaceholder?: string;
 };
 
 const Picker: React.FC<PickerProps> = ({
@@ -37,7 +40,9 @@ const Picker: React.FC<PickerProps> = ({
   },
   onChange,
   value,
-  modalMaxHeight,
+  modalMaxHeight: _modalMaxHeight = 100,
+  showSearch = false,
+  searchPlaceholder = 'Pesquisar...',
   children,
 }) => {
   const theme = useTheme();
@@ -46,6 +51,7 @@ const Picker: React.FC<PickerProps> = ({
   const [selectedItems, setSelectedItems] = useState<
     PickerItemProps | PickerItemProps[] | null
   >(value as any);
+  const [searchTerm, setSearchTerm] = useState<string>('');
 
   function handleOpenModal() {
     setIsModalOpened(true);
@@ -53,6 +59,7 @@ const Picker: React.FC<PickerProps> = ({
 
   function handleCloseModal() {
     setIsModalOpened(false);
+    setSearchTerm('');
   }
 
   function handleSaveSelections() {
@@ -88,10 +95,16 @@ const Picker: React.FC<PickerProps> = ({
     }
   }
 
+  function onChangeSearchText(text: string) {
+    setSearchTerm(text);
+  }
+
   const roundedTopRadius = {
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
   };
+
+  const modalMaxHeight = !showSearch ? _modalMaxHeight : 100;
 
   return (
     <View>
@@ -115,9 +128,10 @@ const Picker: React.FC<PickerProps> = ({
         visible={isModalOpened}
         onDismiss={handleCloseModal}
         width="100%"
-        height={modalMaxHeight ? `${modalMaxHeight}%` : '100%'}
-        containerStyle={modalMaxHeight ? roundedTopRadius : null}
+        height={`${modalMaxHeight}%`}
+        containerStyle={modalMaxHeight !== 100 ? roundedTopRadius : null}
         bottom
+        useSafeArea
       >
         <View
           style={{
@@ -137,10 +151,20 @@ const Picker: React.FC<PickerProps> = ({
               multiSelect,
               selectionLimit,
               selectedItems,
+              searchTerm,
               onSelected: onSelectedItem,
             }}
           >
-            {children}
+            {showSearch && (
+              <View style={{ padding: 16 }}>
+                <Searchbar
+                  placeholder={searchPlaceholder}
+                  value={searchTerm}
+                  onChangeText={onChangeSearchText}
+                />
+              </View>
+            )}
+            <ScrollView>{children}</ScrollView>
           </PickerContext.Provider>
         </View>
       </DialogUI>

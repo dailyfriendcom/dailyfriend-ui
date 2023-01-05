@@ -84,6 +84,7 @@ export default function Forms() {
         error={errors.language?.message}
         selectionLimit={2}
         modalMaxHeight={45}
+        showSearch
       >
         <Picker.Item label="JavaScript" value="js" />
         <Picker.Item label="Java" value="java" />

@@ -6,6 +6,7 @@ export interface PickerContext {
   multiSelect: PickerProps['multiSelect'];
   selectionLimit: PickerProps['selectionLimit'];
   selectedItems: PickerItemProps | PickerItemProps[] | null;
+  searchTerm: string;
   onSelected: (item: PickerItemProps) => void;
 }
 
