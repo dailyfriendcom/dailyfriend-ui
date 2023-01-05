@@ -26,6 +26,7 @@ const FormSwitch: React.FC<FormSwitchProps> = ({
         {...controllerOptions}
         name={inputName}
         control={control}
+        defaultValue={false}
         render={({ field: { onChange, value } }) => (
           <Switch
             {...props}

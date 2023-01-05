@@ -54,6 +54,7 @@ const FormCheckbox = <T extends CheckboxTypes>({
         {...controllerOptions}
         name={inputName}
         control={control}
+        defaultValue={false}
         render={({ field: { onChange, value } }) => (
           // @ts-ignore
           <CheckboxComponent
