@@ -8,6 +8,6 @@ export { default as SectionsWheelPicker } from 'react-native-ui-lib/sectionsWhee
 export { default as Hint } from 'react-native-ui-lib/hint';
 export { default as ExpandableSection } from 'react-native-ui-lib/expandableSection';
 
-export { Form } from './Form';
+export { Form } from './components/Form';
 
-export { default as Picker } from './Picker';
+export { default as Picker } from './components/Picker';
