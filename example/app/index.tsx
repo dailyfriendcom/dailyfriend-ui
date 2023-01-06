@@ -35,6 +35,9 @@ export default function Home() {
       <Link href="/alerts" style={[styles.linkButton, color]}>
         Alerts & Snackbars
       </Link>
+      <Link href="/other" style={[styles.linkButton, color]}>
+        Outros
+      </Link>
     </View>
   );
 }

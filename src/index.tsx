@@ -11,9 +11,7 @@ export { default as UIDialog } from 'react-native-ui-lib/dialog';
 
 export {
   View,
-  Button,
   Colors,
-  Typography,
   Spacings,
   BorderRadiuses,
   Shadows,
