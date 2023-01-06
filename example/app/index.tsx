@@ -29,6 +29,9 @@ export default function Home() {
       <Link href="/expandable-section" style={[styles.linkButton, color]}>
         Expandable Section
       </Link>
+      <Link href="/action-sheet" style={[styles.linkButton, color]}>
+        ActionSheet
+      </Link>
       <Link href="/alerts" style={[styles.linkButton, color]}>
         Alerts & Snackbars
       </Link>
