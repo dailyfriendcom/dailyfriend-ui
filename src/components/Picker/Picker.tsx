@@ -154,8 +154,8 @@ const Picker: React.FC<PickerProps> = ({
    * Const vars
    */
   const roundedTopRadius = {
-    borderTopLeftRadius: 16,
-    borderTopRightRadius: 16,
+    borderTopLeftRadius: 24,
+    borderTopRightRadius: 24,
   };
 
   const modalMaxHeight = !showSearch ? _modalMaxHeight : 100;

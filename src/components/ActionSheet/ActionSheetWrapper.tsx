@@ -71,8 +71,8 @@ const ActionSheet: React.FC<ActionSheetProps> = ({
           styles.container,
           {
             backgroundColor: theme.colors.background,
-            borderTopLeftRadius: theme.roundness,
-            borderTopRightRadius: theme.roundness,
+            borderTopLeftRadius: 24,
+            borderTopRightRadius: 24,
           },
         ]}
       >

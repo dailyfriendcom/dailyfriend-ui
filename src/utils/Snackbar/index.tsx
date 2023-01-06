@@ -1,5 +1,5 @@
 import { EventRegister } from 'react-native-event-listeners';
-import type { SnackbarProps } from 'react-native-paper';
+import { Snackbar, SnackbarProps } from 'react-native-paper';
 import { SnackbarOnCreate } from './SnackbarEvents';
 import SnackbarProvider, { Snackbar as ISnackbar } from './SnackbarProvider';
 
@@ -16,9 +16,13 @@ function showSnackbar(text: string, { action, duration }: AlertProps = {}) {
   } as ISnackbar);
 }
 
-const Snackbar = {
-  show: showSnackbar,
-  Provider: SnackbarProvider,
-};
+// @ts-expect-error
+Snackbar.show = showSnackbar;
 
-export default Snackbar;
+// @ts-expect-error
+Snackbar.Provider = SnackbarProvider;
+
+export default Snackbar as typeof Snackbar & {
+  show: typeof showSnackbar;
+  Provider: typeof SnackbarProvider;
+};

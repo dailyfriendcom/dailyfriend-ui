@@ -1,4 +1,4 @@
-import { Alert, Button, Snackbar, TextInput } from 'dailyfriend-ui';
+import { Alert, Button, Snackbar, Text, TextInput } from 'dailyfriend-ui';
 import { View } from 'react-native';
 
 const ExpandableSectionPage: React.FC = () => {
