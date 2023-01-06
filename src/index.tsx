@@ -9,10 +9,25 @@ export { default as Hint } from 'react-native-ui-lib/hint';
 export { default as ExpandableSection } from 'react-native-ui-lib/expandableSection';
 export { default as UIDialog } from 'react-native-ui-lib/dialog';
 
+export {
+  View,
+  Button,
+  Colors,
+  Typography,
+  Spacings,
+  BorderRadiuses,
+  Shadows,
+  Scheme,
+} from 'react-native-ui-lib/core';
+
 export { Form } from './components/Form';
 
 export { default as Picker } from './components/Picker/Picker';
 export { default as ActionSheet } from './components/ActionSheet';
+export { default as Image } from './components/Image';
 
 export { default as Alert } from './utils/Alert';
 export { default as Snackbar } from './utils/Snackbar';
+export { default as Assets } from './utils/Assets';
+
+// use theme.roundness * 7

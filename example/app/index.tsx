@@ -1,6 +1,6 @@
-import { StyleSheet, View } from 'react-native';
-import { Link, Stack } from 'expo-router';
 import { useTheme } from 'dailyfriend-ui';
+import { Link, Stack } from 'expo-router';
+import { StyleSheet, View } from 'react-native';
 
 export default function Home() {
   const theme = useTheme();
