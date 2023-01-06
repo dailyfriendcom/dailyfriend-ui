@@ -4,7 +4,7 @@ import { Text, useTheme } from 'react-native-paper';
 import { Dialog, PanningProvider } from 'react-native-ui-lib';
 import ActionSheetItem, { ActionSheetItemProps } from './ActionSheetItem';
 
-interface ActionSheetProps {
+export interface ActionSheetProps {
   visible: boolean;
   onDismiss: () => void;
   closeOnDragDown?: boolean;
