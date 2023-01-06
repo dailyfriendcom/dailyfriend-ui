@@ -1,35 +1,32 @@
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { ActionSheet } from 'dailyfriend-ui';
+import { ActionSheet, Button } from 'dailyfriend-ui';
+import { useState } from 'react';
 import { View } from 'react-native';
 
 const ExpandableSectionPage: React.FC = () => {
+  const [visible, setVisible] = useState(false);
+
   return (
     <View style={{ flex: 1 }}>
+      <Button onPress={() => setVisible(true)}>Abrir Sheet</Button>
       <ActionSheet
-        visible={true}
-        title={'Title'}
-        message={'Message goes here'}
-        cancelButtonIndex={3}
-        destructiveButtonIndex={0}
-        useSafeArea
-        options={[
-          {
-            label: 'Hello',
-            onPress: () => null,
-            // eslint-disable-next-line react/no-unstable-nested-components
-            iconLeft: (color, style) => (
-              <MaterialCommunityIcons
-                name="home"
-                color={color}
-                style={style}
-                size={24}
-              />
-            ),
-          },
-          { label: 'World', onPress: () => null, iconRight: 'home' },
-          { label: 'Cancel', onPress: () => console.log('cancel') },
-        ]}
-      />
+        visible={visible}
+        onDismiss={() => setVisible(false)}
+        title="This is my title"
+        description="This is my description"
+      >
+        <ActionSheet.Item title="Item 1" onPress={() => null} />
+        <ActionSheet.Item
+          title="Item 2"
+          description="Hello World"
+          onPress={() => console.log('hello')}
+        />
+        <ActionSheet.Item title="Item 2" icon="home" onPress={() => null} />
+        <ActionSheet.Item
+          title="Item 2"
+          iconRight="home"
+          onPress={() => null}
+        />
+      </ActionSheet>
     </View>
   );
 };

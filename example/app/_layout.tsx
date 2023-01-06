@@ -15,7 +15,7 @@ export default function Layout() {
   }, []);
 
   return (
-    <Provider theme={MD3DarkTheme}>
+    <Provider theme={{ ...MD3DarkTheme, roundness: 24 }}>
       <RootContainer theme={MD3DarkTheme as any} />
       <Stack />
     </Provider>
