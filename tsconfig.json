@@ -23,11 +23,6 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "esnext",
-    "typeRoots": [
-      "node_modules/react-native-ui-lib",
-      "node_modules/react-native-paper",
-      "node_modules/@types"
-    ]
+    "target": "esnext"
   }
 }
