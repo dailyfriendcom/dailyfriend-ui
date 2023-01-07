@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Control, Controller, ControllerProps } from 'react-hook-form';
 
 import { HelperText } from 'react-native-paper';
