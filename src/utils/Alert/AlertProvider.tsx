@@ -139,7 +139,11 @@ const AlertProvider: React.FC<AlertProviderProps> = ({ children }) => {
     <>
       {children}
       <Portal>
-        <Dialog visible={isVisible} onDismiss={handleDismiss}>
+        <Dialog
+          style={{ zIndex: 5 }}
+          visible={isVisible}
+          onDismiss={handleDismiss}
+        >
           <Dialog.Title>{currentAlert?.title}</Dialog.Title>
           <Dialog.Content>{renderContent()}</Dialog.Content>
           <Dialog.Actions>{renderActions()}</Dialog.Actions>
