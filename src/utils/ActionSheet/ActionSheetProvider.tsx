@@ -4,7 +4,13 @@ import type { ShowActionSheetProps } from './index';
 import ActionSheet from '../../components/ActionSheet/ActionSheetWrapper';
 import { ActionSheetOnCreate } from './ActionSheetEvents';
 
-const ActionSheetProvider: React.FC = ({ children }) => {
+interface ActionSheetProviderProps {
+  children: React.ReactNode;
+}
+
+const ActionSheetProvider: React.FC<ActionSheetProviderProps> = ({
+  children,
+}) => {
   const [isVisible, setIsVisible] = useState(false);
   const [currentActionSheet, setCurrentActionSheet] =
     useState<ShowActionSheetProps | null>(null);

@@ -38,6 +38,8 @@ export type PickerProps = {
     onPress: () => void,
     error: string | undefined
   ) => React.ReactNode;
+
+  children: React.ReactNode;
 };
 
 const Picker: React.FC<PickerProps> = ({

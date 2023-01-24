@@ -11,6 +11,7 @@ export type FormPicker = Omit<
   control: Control<any, any> | undefined;
   controllerOptions?: Partial<ControllerProps>;
   error?: string;
+  children: React.ReactNode;
 };
 
 const FormPicker: React.FC<FormPicker> = ({

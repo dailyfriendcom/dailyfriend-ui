@@ -13,6 +13,7 @@ export type FormRadioButtonGroupProps = Partial<
   control: Control<any, any> | undefined;
   controllerOptions?: Partial<ControllerProps>;
   error?: string;
+  children: React.ReactNode;
 };
 
 const FormRadioButtonGroup: React.FC<FormRadioButtonGroupProps> = ({

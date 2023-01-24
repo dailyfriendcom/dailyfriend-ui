@@ -9,7 +9,11 @@ export interface Snackbar {
   duration: SnackbarProps['duration'];
 }
 
-const SnackbarProvider: React.FC = ({ children }) => {
+interface SnackbarProviderProps {
+  children: React.ReactNode;
+}
+
+const SnackbarProvider: React.FC<SnackbarProviderProps> = ({ children }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [currentSnackbar, setCurrentSnackbar] = useState<Snackbar | null>(null);
 

@@ -11,6 +11,7 @@ export interface ActionSheetProps {
   closeOnPressMask?: boolean;
   title?: string;
   description?: string;
+  children?: React.ReactNode;
 }
 
 const ActionSheet: React.FC<ActionSheetProps> = ({

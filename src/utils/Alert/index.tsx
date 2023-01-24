@@ -6,7 +6,16 @@ import AlertProvider, {
   AlertButtonOptions,
 } from './AlertProvider';
 
-function showAlert(title: string, message?: string, buttons?: AlertButton[]) {
+function showAlert(
+  title: string,
+  message?: string,
+  buttons: AlertButton[] = [
+    {
+      text: 'Fechar',
+      onPress: () => null,
+    },
+  ]
+) {
   EventRegister.emit(AlertOnCreate, {
     type: 'alert',
     title,

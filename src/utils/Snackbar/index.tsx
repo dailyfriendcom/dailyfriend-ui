@@ -8,7 +8,10 @@ type AlertProps = {
   duration?: SnackbarProps['duration'];
 };
 
-function showSnackbar(text: string, { action, duration }: AlertProps = {}) {
+function showSnackbar(
+  text: string,
+  { action, duration = 1500 }: AlertProps = {}
+) {
   EventRegister.emit(SnackbarOnCreate, {
     text,
     action,

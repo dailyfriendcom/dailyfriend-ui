@@ -20,7 +20,11 @@ export interface Alert {
   onDismiss: (option?: string) => void;
 }
 
-const AlertProvider: React.FC = ({ children }) => {
+interface AlertProviderProps {
+  children: React.ReactNode;
+}
+
+const AlertProvider: React.FC<AlertProviderProps> = ({ children }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [currentAlert, setCurrentAlert] = useState<Alert | null>(null);
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
