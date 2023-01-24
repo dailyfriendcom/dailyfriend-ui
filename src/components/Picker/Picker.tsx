@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { ScrollView, TouchableOpacity, View } from 'react-native';
 import {
   Appbar,
@@ -75,6 +75,13 @@ const Picker: React.FC<PickerProps> = ({
     PickerItemProps | PickerItemProps[] | null
   >(value as any);
   const [searchTerm, setSearchTerm] = useState<string>('');
+
+  /**
+   * Effects
+   */
+  useEffect(() => {
+    setSelectedItems(value as any);
+  }, [value]);
 
   /**
    * Handles
