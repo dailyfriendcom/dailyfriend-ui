@@ -20,7 +20,7 @@ export interface Alert {
   onDismiss: (option?: string) => void;
 }
 
-interface AlertProviderProps {
+export interface AlertProviderProps {
   children: React.ReactNode;
 }
 

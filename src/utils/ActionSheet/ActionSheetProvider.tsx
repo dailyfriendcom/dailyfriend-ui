@@ -4,7 +4,7 @@ import type { ShowActionSheetProps } from './index';
 import ActionSheet from '../../components/ActionSheet/ActionSheetWrapper';
 import { ActionSheetOnCreate } from './ActionSheetEvents';
 
-interface ActionSheetProviderProps {
+export interface ActionSheetProviderProps {
   children: React.ReactNode;
 }
 

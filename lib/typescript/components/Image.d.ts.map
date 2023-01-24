@@ -1,1 +1,0 @@
-{"version":3,"file":"Image.d.ts","sourceRoot":"","sources":["../../../src/components/Image.tsx"],"names":[],"mappings":";AAAA,OAAO,EAEL,UAAU,IAAI,gBAAgB,EAC/B,MAAM,cAAc,CAAC;AAGtB,UAAU,UAAW,SAAQ,gBAAgB;IAC3C,SAAS,CAAC,EAAE,MAAM,CAAC;IACnB,UAAU,CAAC,EAAE,MAAM,CAAC;CACrB;AAED,QAAA,MAAM,KAAK,EAAE,KAAK,CAAC,EAAE,CAAC,UAAU,CAM/B,CAAC;AAEF,eAAe,KAAK,CAAC"}
