@@ -12,9 +12,10 @@ import DialogUI from 'react-native-ui-lib/dialog';
 import { PickerContext } from './PickerContext';
 import PickerItem from './PickerItem';
 import type { PickerItemProps } from './PickerItem';
+import { setStatusBarBackgroundColor } from 'expo-status-bar';
 
 export type PickerProps = {
-  value?: string | string[];
+  value?: PickerItemProps | PickerItemProps[] | null;
   onChange?: (value: PickerItemProps | PickerItemProps[]) => void;
 
   label?: string;
@@ -86,13 +87,15 @@ const Picker: React.FC<PickerProps> = ({
   /**
    * Handles
    */
-  function handleOpenModal() {
+  const handleOpenModal = useCallback(() => {
     setIsModalOpened(true);
-  }
+    setStatusBarBackgroundColor(theme.colors.elevation.level2, false);
+  }, [theme.colors.elevation.level2]);
 
   function handleCloseModal() {
     setIsModalOpened(false);
     setSearchTerm('');
+    setStatusBarBackgroundColor('transparent', true);
   }
 
   function handleSaveSelections() {
@@ -157,7 +160,7 @@ const Picker: React.FC<PickerProps> = ({
         </View>
       </TouchableOpacity>
     );
-  }, [label, selectedItems, mode, error, renderPicker]);
+  }, [label, selectedItems, mode, error, renderPicker, handleOpenModal]);
 
   /**
    * Const vars
