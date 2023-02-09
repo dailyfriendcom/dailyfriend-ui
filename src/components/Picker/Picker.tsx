@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { ScrollView, TouchableOpacity, View } from 'react-native';
+import { Platform, ScrollView, TouchableOpacity, View } from 'react-native';
 import {
   Appbar,
   Button,
@@ -91,13 +91,17 @@ const Picker: React.FC<PickerProps> = ({
    */
   const handleOpenModal = useCallback(() => {
     setIsModalOpened(true);
-    setStatusBarBackgroundColor(theme.colors.elevation.level2, false);
+    if (Platform.OS === 'android') {
+      setStatusBarBackgroundColor(theme.colors.elevation.level2, false);
+    }
   }, [theme.colors.elevation.level2]);
 
   function handleCloseModal() {
     setIsModalOpened(false);
     setSearchTerm('');
-    setStatusBarBackgroundColor('transparent', true);
+    if (Platform.OS === 'android') {
+      setStatusBarBackgroundColor('transparent', true);
+    }
   }
 
   function handleSaveSelections() {
