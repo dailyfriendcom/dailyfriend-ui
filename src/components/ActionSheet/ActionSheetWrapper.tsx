@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Text, useTheme } from 'react-native-paper';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Dialog, PanningProvider } from 'react-native-ui-lib';
 import ActionSheetItem, { ActionSheetItemProps } from './ActionSheetItem';
 
@@ -24,6 +25,7 @@ const ActionSheet: React.FC<ActionSheetProps> = ({
   children,
 }) => {
   const theme = useTheme();
+  const safeAreaInsets = useSafeAreaInsets();
 
   const renderDraggableIcon = useCallback(() => {
     if (!closeOnDragDown) return null;
@@ -62,7 +64,6 @@ const ActionSheet: React.FC<ActionSheetProps> = ({
       panDirection={
         closeOnDragDown ? PanningProvider.Directions.DOWN : undefined
       }
-      useSafeArea
       visible={visible}
       onDismiss={onDismiss}
       ignoreBackgroundPress={!closeOnPressMask}
@@ -74,6 +75,7 @@ const ActionSheet: React.FC<ActionSheetProps> = ({
             backgroundColor: theme.colors.background,
             borderTopLeftRadius: 24,
             borderTopRightRadius: 24,
+            paddingBottom: safeAreaInsets.bottom,
           },
         ]}
       >

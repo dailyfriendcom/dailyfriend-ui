@@ -13,6 +13,7 @@ import { PickerContext } from './PickerContext';
 import PickerItem from './PickerItem';
 import type { PickerItemProps } from './PickerItem';
 import { setStatusBarBackgroundColor } from 'expo-status-bar';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export type PickerProps = {
   value?: PickerItemProps | PickerItemProps[] | null;
@@ -67,6 +68,7 @@ const Picker: React.FC<PickerProps> = ({
   children,
 }) => {
   const theme = useTheme();
+  const safeAreaInsets = useSafeAreaInsets();
 
   /**
    * States
@@ -183,12 +185,12 @@ const Picker: React.FC<PickerProps> = ({
         height={`${modalMaxHeight}%`}
         containerStyle={modalMaxHeight !== 100 ? roundedTopRadius : null}
         bottom
-        useSafeArea
       >
         <View
           style={{
             backgroundColor: theme.colors.background,
             height: '100%',
+            paddingBottom: safeAreaInsets.bottom,
           }}
         >
           <Appbar.Header elevated mode="small" style={{ marginTop: -20 }}>
