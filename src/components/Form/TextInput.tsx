@@ -6,6 +6,7 @@ import {
   TextInputIconProps,
   TextInputProps,
   HelperText,
+  useTheme,
 } from 'react-native-paper';
 
 type TextInputPropsWithoutUnusedProps = Omit<
@@ -25,6 +26,8 @@ export interface FormTextInput extends TextInputType {
 }
 
 const FormTextInput: React.FC<FormTextInput> = (props) => {
+  const theme = useTheme();
+
   return (
     <>
       <Controller
@@ -38,6 +41,7 @@ const FormTextInput: React.FC<FormTextInput> = (props) => {
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
+            keyboardAppearance={theme.dark ? 'dark' : 'light'}
           />
         )}
       />
