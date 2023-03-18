@@ -151,7 +151,7 @@ const AlertProvider: React.FC<AlertProviderProps> = ({ children }) => {
           <Dialog.Content>{renderContent()}</Dialog.Content>
           <Dialog.Actions
             style={{
-              flexDirection: hasMoreThanThreeButtons ? 'column' : undefined,
+              flexDirection: hasMoreThanThreeButtons ? 'column' : 'row',
             }}
           >
             {renderActions()}
