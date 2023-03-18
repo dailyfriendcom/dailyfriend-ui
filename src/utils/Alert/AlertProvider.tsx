@@ -135,6 +135,9 @@ const AlertProvider: React.FC<AlertProviderProps> = ({ children }) => {
     );
   }, [currentAlert, handleSelectItem, handleDismiss]);
 
+  const hasMoreThanThreeButtons =
+    currentAlert && currentAlert.buttons && currentAlert.buttons.length > 2;
+
   return (
     <>
       {children}
@@ -146,7 +149,13 @@ const AlertProvider: React.FC<AlertProviderProps> = ({ children }) => {
         >
           <Dialog.Title>{currentAlert?.title}</Dialog.Title>
           <Dialog.Content>{renderContent()}</Dialog.Content>
-          <Dialog.Actions>{renderActions()}</Dialog.Actions>
+          <Dialog.Actions
+            style={{
+              flexDirection: hasMoreThanThreeButtons ? 'column' : undefined,
+            }}
+          >
+            {renderActions()}
+          </Dialog.Actions>
         </Dialog>
       </Portal>
     </>
